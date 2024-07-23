@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/flowers.png" type="image/x-icon">
+    <title>Love of my Life ꨄ
+    </title>
+</head>
+<body>
+    <div class="greetings">
+    
+        <span>人</span>
+        <span>生</span>
+        <span>最愛</span>
+        <span>の人</span>
+        
+    </div>
+    
+    <div id="container">
+        <span id="text1"></span>
+        <span id="text2"></span>
+    </div>
+    
+    <svg id="filters">
+        <defs>
+            <filter id="threshold">
+                <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0
+                      0 1 0 0 0
+                      0 0 1 0 0
+                      0 0 0 255 -140" />
+            </filter>
+        </defs>
+    </svg>
+
+    <div class="button1">
+        <button onclick="toggleAudio()" id="myPalagiButton">
+            MY PALAGI
+            <div id="bars">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </button>
+    </div>
+   
+
+    <div class="button">
+        <button>
+            <a href="flower.html">Flowers for my baby :)) </a>
+        </button>
+        
+    </div>
+    
+    
+
+    <audio id="background-music" autoplay loop>
+        <source src="audio/Palagi (Live at The Cozy Cove) - TJ Monterde-[AudioTrimmer.com].mp3" type="audio/mpeg">
+    </audio>
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            var audio = document.getElementById('background-music');
+            var bars = document.querySelectorAll('#myPalagiButton .bar');
+            var button = document.getElementById('myPalagiButton');
+        
+            // Initially hide sound bars
+            bars.forEach(function(bar) {
+                bar.style.display = 'none';
+            });
+        
+            // Function to generate random animation duration
+            function getRandomDuration() {
+                return Math.floor(Math.random() * 1000) + 300; // Random duration between 300ms to 1300ms
+            }
+        
+            // Function to generate random animation delay
+            function getRandomDelay() {
+                return Math.floor(Math.random() * 400); // Random delay between 0ms to 400ms
+            }
+        
+            // Toggle audio and show/hide sound bars animation
+            function toggleAudio() {
+                button.classList.toggle('active'); // Toggle the active class
+        
+                if (audio.paused || audio.ended) {
+                    audio.volume = 0.2; // Set volume to 20%
+                    audio.play().catch(function(error) {
+                        console.error('Audio play failed:', error);
+                    });
+        
+                    // Show sound bars and activate animation
+                    bars.forEach(function(bar, index) {
+                        bar.style.display = 'block'; // Show sound bar
+                        bar.style.animation = `sound ${getRandomDuration()}ms ${getRandomDelay()}ms linear infinite alternate`;
+                    });
+                } else {
+                    audio.pause();
+        
+                    // Hide sound bars and reset animation properties
+                    bars.forEach(function(bar) {
+                        bar.style.display = 'none'; // Hide sound bar
+                        bar.style.animation = 'none'; // Remove animation
+                    });
+                }
+            }
+        
+            // Attach toggleAudio function to button click
+            button.addEventListener('click', toggleAudio);
+        });
+        
+        
+
+
+    </script>
+
+    <script src="main.js"></script>
+    
+</body>
+</html>
